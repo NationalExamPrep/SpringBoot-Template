@@ -65,7 +65,6 @@ class AuthServiceTest {
                 .build();
         
         user = User.builder()
-                .id(1L)
                 .firstName("John")
                 .lastName("Doe")
                 .email("john@example.com")

@@ -5,6 +5,7 @@ import com.starter.common.dto.ApiResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -14,7 +15,10 @@ import java.io.IOException;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+    
+    private final ObjectMapper objectMapper;
     
     @Override
     public void commence(
@@ -29,7 +33,6 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         
         ApiResponse<Void> apiResponse = ApiResponse.error("Unauthorized: " + authException.getMessage());
         
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(response.getOutputStream(), apiResponse);
+        objectMapper.writeValue(response.getOutputStream(), apiResponse);
     }
 }
