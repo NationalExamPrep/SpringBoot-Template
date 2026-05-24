@@ -110,10 +110,19 @@ This will start both PostgreSQL and the application.
 
 ## API Documentation
 
-Once the application is running, access:
+Once the application is running, access the interactive Swagger UI:
 
 - **Swagger UI**: http://localhost:8080/swagger-ui.html
-- **API Docs**: http://localhost:8080/api-docs
+- **OpenAPI JSON**: http://localhost:8080/api-docs
+- **OpenAPI YAML**: http://localhost:8080/api-docs.yaml
+
+The Swagger UI provides:
+- Interactive API testing directly from your browser
+- Detailed request/response schemas with examples
+- Built-in JWT authentication support
+- Comprehensive endpoint documentation
+
+For detailed Swagger usage instructions, see [SWAGGER.md](SWAGGER.md)
 
 ## API Endpoints
 
