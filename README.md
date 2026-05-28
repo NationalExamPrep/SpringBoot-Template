@@ -10,46 +10,46 @@ A production-ready, flexible, and reusable Spring Boot backend starter project f
 - **Feature-based Package Structure**: Organized by domain modules
 
 ### Backend Features
-- ✅ RESTful API design
-- ✅ Global exception handling with `@ControllerAdvice`
-- ✅ Input validation using Jakarta Validation
-- ✅ Standard API response format (success/error wrapper)
-- ✅ Pagination and sorting support
+- RESTful API design
+- Global exception handling with `@ControllerAdvice`
+- Input validation using Jakarta Validation
+- Standard API response format (success/error wrapper)
+- Pagination and sorting support
 
 ### Database
-- ✅ Spring Data JPA
-- ✅ PostgreSQL (configurable via profiles)
-- ✅ Flyway migrations
-- ✅ Auditing fields (createdAt, updatedAt)
+- Spring Data JPA
+- PostgreSQL (configurable via profiles)
+- Flyway migrations
+- Auditing fields (createdAt, updatedAt)
 
 ### Security
-- ✅ Spring Security
-- ✅ JWT authentication (login/register/refresh token)
-- ✅ Role-based authorization (USER, ADMIN)
-- ✅ BCrypt password encryption
+- Spring Security
+- JWT authentication (login/register/refresh token)
+- Role-based authorization (USER, ADMIN)
+- BCrypt password encryption
 
 ### Configuration
-- ✅ Multiple profiles: `dev`, `test`, `prod`
-- ✅ Externalized configuration via environment variables
-- ✅ CORS configuration
+- Multiple profiles: `dev`, `test`, `prod`
+- Externalized configuration via environment variables
+- CORS configuration
 
 ### Logging & Monitoring
-- ✅ SLF4J + Logback
-- ✅ Structured logging
-- ✅ Spring Boot Actuator endpoints
+- SLF4J + Logback
+- Structured logging
+- Spring Boot Actuator endpoints
 
 ### API Documentation
-- ✅ Swagger/OpenAPI 3.0
-- ✅ Interactive API documentation at `/swagger-ui.html`
+- Swagger/OpenAPI 3.0
+- Interactive API documentation at `/swagger-ui.html`
 
 ### DevOps
-- ✅ Dockerfile for containerization
-- ✅ Docker Compose (app + database)
-- ✅ Maven build lifecycle
+- Dockerfile for containerization
+- Docker Compose (app + database)
+- Maven build lifecycle
 
 ### Code Quality
-- ✅ Lombok for boilerplate reduction
-- ✅ Clean code structure
+- Lombok for boilerplate reduction
+- Clean code structure
 
 ## Tech Stack
 
@@ -122,7 +122,7 @@ The Swagger UI provides:
 - Built-in JWT authentication support
 - Comprehensive endpoint documentation
 
-For detailed Swagger usage instructions, see [SWAGGER.md](SWAGGER.md)
+The Swagger UI provides comprehensive documentation for all API endpoints.
 
 ## API Endpoints
 
