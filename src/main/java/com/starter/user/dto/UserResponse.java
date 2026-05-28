@@ -17,7 +17,7 @@ import java.util.UUID;
 @Schema(description = "User information response")
 public class UserResponse {
     
-    @Schema(description = "User ID", example = "123e4567-e89b-12d3-a456-426614174000")
+    @Schema(description = "User ID in UUID format", example = "123e4567-e89b-12d3-a456-426614174000", format = "uuid")
     private UUID id;
     
     @Schema(description = "User's first name", example = "John")

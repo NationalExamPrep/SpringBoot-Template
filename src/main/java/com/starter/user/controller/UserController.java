@@ -53,7 +53,12 @@ public class UserController {
         )
     })
     public ResponseEntity<ApiResponse<UserResponse>> getUserById(
-        @Parameter(description = "User ID", required = true)
+        @Parameter(
+            description = "User ID in UUID format",
+            required = true,
+            example = "123e4567-e89b-12d3-a456-426614174000",
+            schema = @Schema(type = "string", format = "uuid")
+        )
         @PathVariable UUID id
     ) {
         UserResponse user = userService.getUserById(id);
@@ -131,7 +136,12 @@ public class UserController {
         )
     })
     public ResponseEntity<ApiResponse<Void>> deleteUser(
-        @Parameter(description = "User ID to delete", required = true)
+        @Parameter(
+            description = "User ID to delete in UUID format",
+            required = true,
+            example = "123e4567-e89b-12d3-a456-426614174000",
+            schema = @Schema(type = "string", format = "uuid")
+        )
         @PathVariable UUID id
     ) {
         userService.deleteUser(id);
