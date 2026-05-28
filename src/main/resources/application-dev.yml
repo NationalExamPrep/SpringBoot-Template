@@ -4,6 +4,13 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: static/**,public/**
+    livereload:
+      enabled: true
 
 logging:
   level:

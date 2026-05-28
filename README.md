@@ -47,6 +47,7 @@ A production-ready, flexible, and reusable Spring Boot backend starter project f
 - Dockerfile for containerization
 - Docker Compose (app + database)
 - Maven build lifecycle
+- **Spring Boot DevTools**: Automatic server restart on code changes
 
 ### Code Quality
 - Lombok for boilerplate reduction
@@ -95,11 +96,13 @@ export DATABASE_PASSWORD=postgres
 # Build the project
 mvn clean install
 
-# Run the application
-mvn spring-boot:run
+# Run the application (with auto-restart enabled in dev profile)
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
 The application will start on `http://localhost:8080`
+
+**Note**: When running in development mode, Spring Boot DevTools will automatically restart the server whenever you make changes to your Java code. Simply save your files and the application will reload within seconds.
 
 ### 4. Run with Docker Compose
 
@@ -287,6 +290,36 @@ Access actuator endpoints:
 - Health: http://localhost:8080/actuator/health
 - Info: http://localhost:8080/actuator/info
 - Metrics: http://localhost:8080/actuator/metrics
+
+## Development Features
+
+### Auto-Restart with DevTools
+
+Spring Boot DevTools is configured for the development profile and provides:
+
+- **Automatic Restart**: The server automatically restarts when you modify Java classes, resources, or configuration files
+- **LiveReload**: Browser auto-refresh support (requires LiveReload browser extension)
+- **Fast Restart**: Uses two classloaders for quick restart times
+
+**How it works**:
+1. Run the application with the `dev` profile: `mvn spring-boot:run -Dspring-boot.run.profiles=dev`
+2. Make changes to your Java code
+3. Save the file (or build the project)
+4. DevTools detects the change and automatically restarts the application
+
+**IDE Configuration**:
+- **IntelliJ IDEA**: Enable "Build project automatically" in Settings → Build, Execution, Deployment → Compiler
+- **Eclipse**: Auto-build is enabled by default
+- **VS Code**: Save files to trigger rebuild
+
+**What triggers a restart**:
+- Changes to Java source files
+- Changes to resources (application.yml, etc.)
+- Changes to dependencies in pom.xml
+
+**What doesn't trigger a restart**:
+- Static resources (excluded by default)
+- View templates in `/static` or `/public`
 
 ## License
 
