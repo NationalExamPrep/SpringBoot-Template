@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.responses.ApiResponse as SwaggerApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +31,12 @@ public class AuthController {
         description = "Creates a new user account with the provided credentials. Returns JWT tokens for authentication."
     )
     @ApiResponses(value = {
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "201",
             description = "User registered successfully",
             content = @Content(schema = @Schema(implementation = AuthResponse.class))
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "400",
             description = "Invalid input or email already exists",
             content = @Content
@@ -56,12 +55,12 @@ public class AuthController {
         description = "Authenticates a user with email and password. Returns JWT access and refresh tokens."
     )
     @ApiResponses(value = {
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200",
             description = "Login successful",
             content = @Content(schema = @Schema(implementation = AuthResponse.class))
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "401",
             description = "Invalid credentials",
             content = @Content
@@ -78,12 +77,12 @@ public class AuthController {
         description = "Generates a new access token using a valid refresh token"
     )
     @ApiResponses(value = {
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200",
             description = "Token refreshed successfully",
             content = @Content(schema = @Schema(implementation = AuthResponse.class))
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "401",
             description = "Invalid or expired refresh token",
             content = @Content

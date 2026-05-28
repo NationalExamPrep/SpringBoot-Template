@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.responses.ApiResponse as SwaggerApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -35,17 +34,17 @@ public class UserController {
         description = "Retrieves user information by their unique identifier. Requires authentication."
     )
     @ApiResponses(value = {
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200",
             description = "User found",
             content = @Content(schema = @Schema(implementation = UserResponse.class))
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "404",
             description = "User not found",
             content = @Content
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "401",
             description = "Unauthorized",
             content = @Content
@@ -66,17 +65,17 @@ public class UserController {
         description = "Retrieves a paginated list of all users. Only accessible by administrators."
     )
     @ApiResponses(value = {
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200",
             description = "Users retrieved successfully",
             content = @Content(schema = @Schema(implementation = PageResponse.class))
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "401",
             description = "Unauthorized",
             content = @Content
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "403",
             description = "Forbidden - Admin role required",
             content = @Content
@@ -108,22 +107,22 @@ public class UserController {
         description = "Permanently deletes a user account. Only accessible by administrators."
     )
     @ApiResponses(value = {
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200",
             description = "User deleted successfully",
             content = @Content
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "404",
             description = "User not found",
             content = @Content
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "401",
             description = "Unauthorized",
             content = @Content
         ),
-        @SwaggerApiResponse(
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "403",
             description = "Forbidden - Admin role required",
             content = @Content
