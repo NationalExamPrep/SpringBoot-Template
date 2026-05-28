@@ -35,8 +35,8 @@ A production-ready, flexible, and reusable Spring Boot backend starter project f
 - CORS configuration
 
 ### Logging & Monitoring
-- SLF4J + Logback
-- Structured logging
+- SLF4J with Spring Boot's default logging
+- Configurable log levels
 - Spring Boot Actuator endpoints
 
 ### API Documentation
