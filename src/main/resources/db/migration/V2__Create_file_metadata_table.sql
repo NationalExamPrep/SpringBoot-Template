@@ -1,11 +1,11 @@
 CREATE TABLE file_metadata (
-    id BIGSERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     file_name VARCHAR(255) NOT NULL UNIQUE,
     original_file_name VARCHAR(255) NOT NULL,
     content_type VARCHAR(255) NOT NULL,
     file_size BIGINT NOT NULL,
     file_path VARCHAR(500) NOT NULL,
-    uploaded_by BIGINT,
+    uploaded_by UUID,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     FOREIGN KEY (uploaded_by) REFERENCES users(id) ON DELETE SET NULL

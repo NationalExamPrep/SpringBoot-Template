@@ -47,7 +47,7 @@ public class FileStorageService {
     }
     
     @Transactional
-    public FileUploadResponse storeFile(MultipartFile file, Long userId) {
+    public FileUploadResponse storeFile(MultipartFile file, UUID userId) {
         if (file.isEmpty()) {
             throw new BadRequestException("File is empty");
         }

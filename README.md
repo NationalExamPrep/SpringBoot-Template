@@ -19,6 +19,7 @@ A production-ready, flexible, and reusable Spring Boot backend starter project f
 ### Database
 - Spring Data JPA
 - PostgreSQL (configurable via profiles)
+- UUID primary keys for all entities
 - Flyway migrations
 - Auditing fields (createdAt, updatedAt)
 
@@ -244,7 +245,7 @@ curl -X POST http://localhost:8080/api/v1/auth/login \
 ### Access Protected Endpoint
 
 ```bash
-curl -X GET http://localhost:8080/api/v1/users/1 \
+curl -X GET http://localhost:8080/api/v1/users/123e4567-e89b-12d3-a456-426614174000 \
   -H "Authorization: Bearer <your-jwt-token>"
 ```
 

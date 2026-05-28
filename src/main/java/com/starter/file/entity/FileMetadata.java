@@ -4,9 +4,11 @@ import com.starter.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "file_metadata")
-@Getter
+@Getter 
 @Setter
 @Builder
 @NoArgsConstructor
@@ -28,5 +30,5 @@ public class FileMetadata extends BaseEntity {
     @Column(nullable = false)
     private String filePath;
     
-    private Long uploadedBy;
+    private UUID uploadedBy;
 }

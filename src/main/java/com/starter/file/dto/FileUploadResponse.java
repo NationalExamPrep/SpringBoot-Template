@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -15,8 +16,8 @@ import java.time.LocalDateTime;
 @Schema(description = "File upload response")
 public class FileUploadResponse {
     
-    @Schema(description = "File metadata ID", example = "1")
-    private Long id;
+    @Schema(description = "File metadata ID", example = "123e4567-e89b-12d3-a456-426614174000")
+    private UUID id;
     
     @Schema(description = "Stored filename", example = "abc123-document.pdf")
     private String fileName;
