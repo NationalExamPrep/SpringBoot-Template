@@ -146,6 +146,14 @@ The Swagger UI provides comprehensive documentation for all API endpoints.
 | GET | `/api/v1/users` | Get all users (paginated) | Admin only |
 | DELETE | `/api/v1/users/{id}` | Delete user | Admin only |
 
+### Email
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/api/v1/emails/send` | Send custom email | Admin only |
+| POST | `/api/v1/emails/welcome` | Send welcome email | Admin only |
+| POST | `/api/v1/emails/test` | Send test email | Admin only |
+
 ## Configuration Profiles
 
 ### Development (`dev`)
@@ -163,6 +171,54 @@ mvn test
 java -jar target/spring-boot-starter-1.0.0.jar --spring.profiles.active=prod
 ```
 
+## Email Configuration
+
+The application includes email functionality for sending notifications and welcome messages. To enable email sending:
+
+### Gmail Configuration (Recommended for Development)
+
+1. **Enable 2-Factor Authentication** on your Gmail account
+2. **Generate an App Password**:
+   - Go to Google Account Settings → Security
+   - Under "2-Step Verification", select "App passwords"
+   - Generate a new app password for "Mail"
+3. **Set Environment Variables**:
+   ```bash
+   export MAIL_HOST=smtp.gmail.com
+   export MAIL_PORT=587
+   export MAIL_USERNAME=your-email@gmail.com
+   export MAIL_PASSWORD=your-16-char-app-password
+   ```
+
+### Other SMTP Providers
+
+For other email providers (SendGrid, Mailgun, AWS SES, etc.), update the configuration:
+
+```bash
+export MAIL_HOST=smtp.your-provider.com
+export MAIL_PORT=587
+export MAIL_USERNAME=your-username
+export MAIL_PASSWORD=your-password
+```
+
+### Testing Email Configuration
+
+Use the test endpoint to verify your email setup:
+
+```bash
+# Login as admin
+TOKEN=$(curl -X POST http://localhost:8080/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@example.com","password":"Admin@123"}' \
+  | jq -r '.data.accessToken')
+
+# Send test email
+curl -X POST "http://localhost:8080/api/v1/emails/test?email=your-email@example.com" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+**Note**: Email sending is asynchronous and runs in the background. Check your application logs for email delivery status.
+
 ## Environment Variables
 
 | Variable | Description | Default |
@@ -175,6 +231,10 @@ java -jar target/spring-boot-starter-1.0.0.jar --spring.profiles.active=prod
 | `JWT_EXPIRATION` | Access token expiration (ms) | `86400000` (24h) |
 | `JWT_REFRESH_EXPIRATION` | Refresh token expiration (ms) | `604800000` (7d) |
 | `CORS_ALLOWED_ORIGINS` | Allowed CORS origins | `http://localhost:3000,http://localhost:4200` |
+| `MAIL_HOST` | SMTP server host | `smtp.gmail.com` |
+| `MAIL_PORT` | SMTP server port | `587` |
+| `MAIL_USERNAME` | Email account username | (required for sending emails) |
+| `MAIL_PASSWORD` | Email account password | (required for sending emails) |
 
 ## Testing
 
@@ -250,6 +310,48 @@ curl -X POST http://localhost:8080/api/v1/auth/login \
 ```bash
 curl -X GET http://localhost:8080/api/v1/users/123e4567-e89b-12d3-a456-426614174000 \
   -H "Authorization: Bearer <your-jwt-token>"
+```
+
+### Send Test Email (Admin Only)
+
+```bash
+# First, login as admin to get the JWT token
+curl -X POST http://localhost:8080/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@example.com",
+    "password": "Admin@123"
+  }'
+
+# Then send a test email
+curl -X POST "http://localhost:8080/api/v1/emails/test?email=recipient@example.com" \
+  -H "Authorization: Bearer <admin-jwt-token>"
+```
+
+### Send Custom Email (Admin Only)
+
+```bash
+curl -X POST http://localhost:8080/api/v1/emails/send \
+  -H "Authorization: Bearer <admin-jwt-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "user@example.com",
+    "subject": "Welcome!",
+    "message": "Thank you for joining us!",
+    "html": false
+  }'
+```
+
+### Send Welcome Email (Admin Only)
+
+```bash
+curl -X POST http://localhost:8080/api/v1/emails/welcome \
+  -H "Authorization: Bearer <admin-jwt-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "newuser@example.com",
+    "userName": "John Doe"
+  }'
 ```
 
 ## Extending the Application
